@@ -36,6 +36,8 @@ export const getCategory = (categoryId) => {
       console.log(err);
     });
 };
+
+
 // delete a category
 export const deleteCategory = (categoryId, userId, token) => {
   return fetch(`${API}/category/${categoryId}/${userId}`, {
@@ -95,6 +97,15 @@ export const getAllProducts = () => {
     .catch((err) => console.log(err));
 };
 
+// get products by category
+export const getProductsbyCategory = (categoryId) =>{
+  return fetch(`${API}/products/${categoryId}`, {
+    method: "GET"
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+} 
+
 // get a product
 export const getProduct = (productId) => {
   return fetch(`${API}/product/${productId}`, {
@@ -131,4 +142,47 @@ export const updateProduct = (productId, userId, token, product) => {
       return response.json();
     })
     .catch((err) => console.log(err));
+};
+
+// Order Calls
+
+// get all orders
+export const getAllOrders = (userId, token) => {
+  return fetch(`${API}/order/all/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
+// update an order
+export const updateOrderStatus = (orderId, userId, token, status) => {
+  return fetch(`${API}/order/${orderId}/status/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: status
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+// get a category
+export const getOrder = (orderId) => {
+  return fetch(`${API}/order/${orderId}`, {
+    method: "GET"
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
