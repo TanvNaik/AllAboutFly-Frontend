@@ -19,6 +19,9 @@ import Checkout from "./order/Checkout.js";
 import Orders from "./admin/Orders";
 import Contact from "./core/Contact";
 import NotFound from "./core/NotFound";
+import UpdateOrder from "./admin/UpdateOrder.js";
+import UserOrders from "./user/UserOrders.js";
+import ViewOrder from "./user/ViewOrder.js";
 export default function Routers() {
   return (
     <BrowserRouter>
@@ -46,6 +49,22 @@ export default function Routers() {
             }
           />
         <Route
+            path="/order/:orderId"
+            element={
+              <PrivateRoute>
+                <ViewOrder />
+              </PrivateRoute>
+            }
+          />
+        <Route
+            path="/user-orders/:userId"
+            element={
+              <PrivateRoute>
+                <UserOrders />
+              </PrivateRoute>
+            }
+          />
+        <Route
             path="/checkout"
             element={
               <PrivateRoute>
@@ -62,11 +81,20 @@ export default function Routers() {
               </AdminRoute>
             }
           />
+
         <Route
             path="/admin/orders"
             element={
               <AdminRoute>
                 <Orders />
+              </AdminRoute>
+            }
+          />
+        <Route
+            path="/update-order/:orderId"
+            element={
+              <AdminRoute>
+                <UpdateOrder />
               </AdminRoute>
             }
           />

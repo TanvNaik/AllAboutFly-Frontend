@@ -27,7 +27,8 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
     }
   }
 
-  const addToCart = () => {
+  const addToCart = (e) => {
+    e.preventDefault()
     // addItemToCart(user._id,product._id, product.price)
     addItemToCart(product, () => navigate("/cart"));
 
@@ -42,32 +43,19 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
   const showAddToCart = (addtoCart) => {
     return (
       addtoCart && (
-        <a href="" className="social-info"          
+        <a href="" className="social-info text-light"          
         >
-										<span onClick={addToCart}  className="ti-bag"></span>
-										<p className="hover-text">add to bag</p>
+										<span onClick={addToCart}  className="ti-bag text-dark" style={{background: "#B6EADA"}}></span>
+										<p className="hover-text text-light">add to bag</p>
 									</a>
        
       )
     );
     
   };
-  const showRemoveFromCart = () => {
-    return (
-      removeFromCart && (
-        <a href="" className="social-info"                   
-        >
-										<span onClick={removefromCart} className="ti-bag"></span>
-										<p  
- className="hover-text">add to bag</p>
-									</a>
-        
-      )
-    );
-  };
+ 
   return (
-						<div className="single-product">
-           {console.log(product)}
+						<div className="single-product bg-light mt-2" style={{borderRadius: "10px"}}>
            {product.photo && (
                         <img
                           width={"300px"}
@@ -75,21 +63,18 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
                           src={`http://localhost:8000/image/${product.photo}`}
                         />
                       )}
-							<div className="product-details">
-								<h6>{product.name}</h6>
+							<div className="product-details  bg-dark">
+								<h6 className="text-light">{product.name}</h6>
 								<div className="price">
-									<h6>&#x20B9;{product.price}</h6>
+									<h6 className="text-light">&#x20B9;{product.price}</h6>
 									<h6 className="l-through">$210.00</h6>
 								</div>
 								<div className="prd-bottom">
+                  
                  {showAddToCart(addtoCart)}
-                {showRemoveFromCart(removeFromCart)}
 									
 									
-									<a href="" className="social-info">
-										<span className="lnr lnr-move"></span>
-										<p className="hover-text">view more</p>
-									</a>
+									
 								</div>
 							</div>
 						</div>

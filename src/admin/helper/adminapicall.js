@@ -147,13 +147,10 @@ export const updateProduct = (productId, userId, token, product) => {
 // Order Calls
 
 // get all orders
+
 export const getAllOrders = (userId, token) => {
-  return fetch(`${API}/order/all/${userId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`
-    },
+  return fetch(`${API}/order/all`, {
+    method: "GET"
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
@@ -165,16 +162,17 @@ export const updateOrderStatus = (orderId, userId, token, status) => {
     method: "PUT",
     headers: {
       Accept: "application/json",
+     "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: status
+    body: JSON.stringify({status: status})
   })
     .then((response) => {
       return response.json();
     })
     .catch((err) => console.log(err));
 };
-// get a category
+// get a order
 export const getOrder = (orderId) => {
   return fetch(`${API}/order/${orderId}`, {
     method: "GET"

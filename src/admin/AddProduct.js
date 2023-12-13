@@ -55,7 +55,6 @@ const AddProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
     setValues({ ...values, error: "", loading: true });
     createProduct(user._id, token, formData).then((data) => {
       if (data.error) {
@@ -174,49 +173,39 @@ const AddProduct = () => {
           value={stock}
         />
       </div>
-
+      <div className='form-group p-1 text-center'>
       <button
         type='submit'
         onClick={onSubmit}
-        className='btn btn-outline-success mb-3'
+        className='btn btn-success mb-3 w-50'
       >
         Create Product
       </button>
+      </div>
+
+      
     </form>
   );
 
   return (
     <Base
       
-    >{/* <!-- Start Banner Area --> */}
-    <section className="banner-area organic-breadcrumb">
-      <div className="container">
-        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-          <div className="col-first">
-            <h1>Add Product</h1>
-            <nav className="d-flex align-items-center">
-              <a href="index.html">
-                Home<span className="lnr lnr-arrow-right"></span>
-              </a>
-              <a href="single-product.html">Admin Dashboard<span className="lnr lnr-arrow-right"></span></a><a href="single-product.html">Add Products</a>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* <!-- End Banner Area --> */}
- 
+    >
+      <div className="container" style={{marginTop:"7%"}}>
+
       <Link to='/admin/dashboard' className='btn btn-md btn-success mb-3'>
         Admin Home
       </Link>
-      <div className='row bg-light text-dark rounded mb-2' >
-        <div className='col-md-8 offset-md-2 rounded' style={{border: "1px solid grey"}}>
+      <div className='row  mb-2' >
+        <div className='col-md-8 offset-md-2 text-light ' >
           {errorMessage()}
           {succesMessage()}
           {getaRedirect()}
           {createProductForm()}
         </div>
       </div>
+      </div>
+
     </Base>
   );
 };

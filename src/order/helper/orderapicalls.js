@@ -14,7 +14,6 @@ export const createOrder = (userId, order, token) => {
         return response.json();
       })
       .catch((err) => {
-        console.log(err);
         return err;
       });
   };

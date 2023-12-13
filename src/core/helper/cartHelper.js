@@ -1,40 +1,26 @@
 export const addItemToCart = (item, next) => {
-    let cart = [];
-    if (typeof window !== undefined) {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [{...item, count:1}];
+      let existingItem = cart.find(prod => prod._id === item._id);
+
+      if (existingItem) {
+        existingItem.count += 1;
+      } else {
+        cart.push({ ...item, count: 1  });
       }
-      if(cart.length === 0){
-        cart.push({
-          ...item,
-          count: 1
-        });
-        }
-        else{
-          cart.map((prod) => {
-            if(prod._id === item._id){
-              prod.count++;
-            }else{
-              cart.push({
-                ...item,
-                count: 1
-              });
-            }
-          })
-        }
-      
-      
-      localStorage.setItem("cart", JSON.stringify(cart));
+
+      localStorage.setItem('cart', JSON.stringify(cart));
       next();
     }
-  };
-  
 
+    
 
   export const loadCart = () => {
     if (typeof window !== undefined) {
       if (localStorage.getItem("cart")) {
         return JSON.parse(localStorage.getItem("cart"));
+      }else{
+        return []
       }
     }
   };

@@ -1,17 +1,18 @@
 import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../auth/helper/index";
+import "../styles.css"
 const currentTab = (pathname, path) => {
   if (pathname === path) {
-    return { color: "#507C9" };
+    return { color: "#301E67" };
   } else {
-    return { color: "#222222" };
+    return { color: "#03001C" };
   }
 };
 const Nav = (props) => {
   const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-expand-lg navbar-light main_box ">
+    <nav className="navbar navbar-expand-lg navbar-light main_box bg-light">
       <div className="container">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
         <Link className="navbar-brand logo_h" to={"/"} >
@@ -110,7 +111,7 @@ const Nav = (props) => {
             {isAuthenticated() && (
               <li className="nav-item">
                 <span
-                  className="nav-link text-warning"
+                  className="nav-link text-danger"
                   onClick={() => {
                     signout(() => {
                       navigate("/");

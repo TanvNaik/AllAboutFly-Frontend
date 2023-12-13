@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth/helper";
 import Base from "../core/Base";
 import { updateCategory, getCategory } from "./helper/adminapicall";
+import { useParams } from "react-router-dom";
 
-const UpdateCategory = ({ match }) => {
+
+const UpdateCategory = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const { user, token } = isAuthenticated();
+  const routeParams = useParams();
 
   const preload = (categoryId) => {
     getCategory(categoryId).then((data) => {
@@ -20,7 +23,7 @@ const UpdateCategory = ({ match }) => {
     });
   };
   useEffect(() => {
-    preload(match.params.categoryId);
+    preload(routeParams.categoryId);
   }, []);
   const goBack = () => {
     return (
@@ -39,13 +42,13 @@ const UpdateCategory = ({ match }) => {
     event.preventDefault();
     setError("");
     setSuccess(false);
-    updateCategory(match.params.categoryId, name, user._id, token).then(
+    updateCategory(routeParams.categoryId, name, user._id, token).then(
       (data) => {
         if (data.error) {
           setError(data.error);
         } else {
           setSuccess(true);
-          preload(match.params.categoryId);
+          preload(routeParams.categoryId);
         }
       }
     );

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "../core/Base";
+import { useParams } from "react-router-dom";
+
 import {
   getProduct,
   updateProduct,
@@ -8,7 +10,7 @@ import {
 } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
 
-const UpdateProduct = ({ match }) => {
+const UpdateProduct = () => {
   const { user, token } = isAuthenticated();
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -16,7 +18,6 @@ const UpdateProduct = ({ match }) => {
     description: "",
     price: "",
     stock: "",
-    photo: "",
     categories: [],
     category: "",
     loading: false,
@@ -39,6 +40,8 @@ const UpdateProduct = ({ match }) => {
     getRedirect,
     formData
   } = values;
+  const routeParams = useParams();
+
 
   const preload = (productId) => {
     getProduct(productId).then((data) => {
@@ -73,13 +76,13 @@ const UpdateProduct = ({ match }) => {
   };
 
   useEffect(() => {
-    preload(match.params.productId);
+    preload(routeParams.productId);
   }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    updateProduct(match.params.productId, user._id, token, formData).then(
+    updateProduct(routeParams.productId, user._id, token, formData).then(
       (data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
@@ -134,18 +137,7 @@ const UpdateProduct = ({ match }) => {
 
   const updateProductForm = () => (
     <form>
-      <span>Post photo</span>
-      <div className='form-group '>
-        <label className='btn btn-block btn-success'>
-          <input
-            onChange={handleChange("photo")}
-            type='file'
-            name='photo'
-            accept='image'
-            placeholder='choose a file'
-          />
-        </label>
-      </div>
+      
       <div className='form-group p-1'>
         <input
           onChange={handleChange("name")}
@@ -197,33 +189,36 @@ const UpdateProduct = ({ match }) => {
           value={stock}
         />
       </div>
+      <div className='form-group p-1  text-center'>
 
       <button
         type='submit'
         onClick={onSubmit}
-        className='btn btn-outline-success mb-3'
+        className='btn btn-success mb-3 w-50'
       >
         Update Product
       </button>
+      </div>
     </form>
   );
 
   return (
     <Base
       title='Update a Product here!'
-      description='Welcome to product updation section'
       className='container bg-info p-4'
     >
+          <div className="container" style={{marginTop:"7%"}}>
       <Link to='/admin/dashboard' className='btn btn-md btn-dark mb-3'>
         Admin Home
       </Link>
-      <div className='row bg-dark text-white rounded'>
+      <div className='row   rounded'>
         <div className='col-md-8 offset-md-2'>
           {errorMessage()}
           {succesMessage()}
           {getaRedirect()}
           {updateProductForm()}
         </div>
+      </div>
       </div>
     </Base>
   );

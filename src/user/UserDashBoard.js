@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { getUser, getUserOrders } from "./helper/userapicalls";
+import { Link } from "react-router-dom";
 
 const UserDashBoard = () => {
-  const { user, token } = isAuthenticated();
-
+  const {  user,  user: { name, email }, token} = isAuthenticated();
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
@@ -93,14 +93,13 @@ const UserDashBoard = () => {
               )}
 
               <ul className="list cat-list">
-                {orders &&
+                {orders.length > 0 &&
                   orders.map((order, key) => {
                     return (
                       <li key={key}>
                         <span className="d-flex justify-content-between">
                           <ul>
-                            {console.log(order)}
-                            {order.productCart.products.map((prod, key) => {
+                            {order.productCart.products.length > 0 && order.productCart.products.map((prod, key) => {
                               return (
                                 <li>
                                   {prod.productId.name} x {prod.count}
@@ -145,26 +144,82 @@ const UserDashBoard = () => {
       </div>
     );
   };
+
+
+  const leftSide = () => {
+     return <div className='card w-100 h-100 text-start bg-light'>
+        <h4 className='card-header ' style={{fontSize: "1.2rem"}}>  Dashboard </h4>
+        <ul className='list-group'>
+          <li className='list-group-item'>
+          {/* <Link to={"../../update-profile"} className='nav-link ' style={{color: "#6C70FE"}}>
+              Update Profile
+            </Link> */}
+            
+            
+            <Link to={"../../cart"} className='nav-link ' style={{color: "#6C70FE"}}>
+              Cart
+            </Link>
+            <Link to={"../../user-orders/" + user._id} className='nav-link ' style={{color: "#6C70FE"}}>
+              Orders
+            </Link>
+            <Link to={"../../write-feedback"} className='nav-link ' style={{color: "#6C70FE"}}>
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+      </div>
+  }
+  const rightSide = () => {
+    return <div className='card mb-4 text-start w-100 h-100 bg-light text-dark' >
+        <h4 className='card-header'>Profile</h4>
+        <ul className='list-group'>
+          <li className='list-group-item'>
+            <span
+              className='badge bg-success 
+               mr-2'
+            >
+              Name:
+            </span>
+            &nbsp;
+            {name}
+          </li>
+          <li className='list-group-item'>
+            <span
+              className='badge bg-success 
+               mr-2 '
+            >
+              Email:
+            </span>
+            &nbsp;
+            {email}
+          </li>
+          
+         
+          <li className='list-group-item'>
+            <span className='badge bg-warning text-dark'>User Area</span>
+          </li>
+        </ul>
+      </div>
+  }
+  const userProfilePic = () => {
+      return(
+        <div className='card  w-100 h-100  justify-content-center align-items-center bg-dark' >
+                
+                <img width={"50%"} 
+                src="../images/undraw_pic_profile_re_7g2h.svg"
+                />
+              
+        </div>
+      )
+  }
   return (
     <Base title="User Dash Board">
-      {/* <!-- Start Banner Area --> */}
-      <section className="banner-area organic-breadcrumb">
-        <div className="container">
-          <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div className="col-first">
-              <h1>Dashboard</h1>
-              <nav className="d-flex align-items-center">
-                <a href="index.html">
-                  Home<span className="lnr lnr-arrow-right"></span>
-                </a>
-                <a href="single-product.html">Dashboard</a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <!-- End Banner Area --> */}
-      {dashBoard()}
+      <div className='row justify-content-center ' style={{marginTop: "6%"}}>
+        <div className='col-3  d-flex justify-content-center align-items-center'>{leftSide()}</div>
+        <div className='col-5  '>{rightSide()}</div>
+        {/* <div className="col-3 d-flex justify-content-center align-items-center">{userProfilePic()}</div> */}
+      </div>
+      {/* {dashBoard()} */}
     </Base>
   );
 };

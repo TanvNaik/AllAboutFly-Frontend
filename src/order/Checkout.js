@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
-import StripeCheckoutButton from "react-stripe-checkout";
-import PaymentButton from "./PaymentButton";
 import { isAuthenticated } from "../auth/helper";
 import { createOrder } from "./helper/orderapicalls";
 
@@ -12,10 +10,10 @@ export default function Checkout() {
     address: "",
     contact_no: "",
     zip: "",
-    error: "",
     amount: JSON.parse(localStorage.getItem("price")),
     success: false,
   });
+  const[error,setError] = useState(false);
   const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")).products);
 
   const [productIds, setProductids] = useState([])
@@ -42,9 +40,7 @@ export default function Checkout() {
     email,
     address,
     contact_no,
-    zip,
     amount,
-    error,
     success,
   } = values;
   const [details, setDetails] = useState()
@@ -64,7 +60,6 @@ export default function Checkout() {
       contact_no: contact_no
     };
     setDetails(details)
-    // localStorage.setItem("orderDetails", JSON.stringify(details));
     if(
       billingName &&
       address &&
@@ -76,25 +71,41 @@ export default function Checkout() {
   };
 
   const createOrderCOD = () => {
+
+    if(contact_no.length < 10){
+      return setError("Please enter 10 digit contact number")
+    }
+
+
     createOrder(user._id, {order: details}, token).then(data => {
       if(data.error){
         return alert(data.error)
       }
+      setError(false)
       return alert("Order placed successfully!")
     })
   }
-  
+  const errorMessage = () => {
+    return (
+      <div
+        className=' container alert alert-danger mt-3'
+        style={{ display: error ? "" : "none" }}
+      >
+        <h4> {error}</h4>
+      </div>
+    );
+  };
   const checkout = () => {
     return (
       // <!--================Checkout Area =================-->
 
       <section className="checkout_area section_gap">
-
+        {errorMessage()}
         <div className="container ">
           <div className="billing_details ">
             <div className="row ">
               <div className="col-lg-6">
-                <h3>Billing Details</h3>
+                <h3 className="text-light">Billing Details</h3>
                 <form
                   className="row contact_form"
                   action="#"
@@ -142,16 +153,7 @@ export default function Checkout() {
                       required={true}
                     />
                   </div>
-                  <div className="col-md-12 form-group">
-                    <input
-                      className="form-control"
-                      onChange={handleChange("zip")}
-                      type="number"
-                      placeholder="Postcode/ZIP"
-                      value={zip}
-                      required={true}
-                    />
-                  </div>
+                  
                 </form>
               </div>
               <div className="col-lg-6 ">
@@ -207,24 +209,6 @@ export default function Checkout() {
   };
   return (
     <Base>
-      {/* <!-- Start Banner Area --> */}
-      <section className="banner-area organic-breadcrumb">
-        <div className="container">
-          <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div className="col-first">
-              <h1>Checkout</h1>
-              <nav className="d-flex align-items-center">
-                <a href="index.html">
-                  Home<span className="lnr lnr-arrow-right"></span>
-                </a>
-                <a href="single-product.html">Checkout</a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <!-- End Banner Area --> */}
-
       {checkout()}
     </Base>
   );

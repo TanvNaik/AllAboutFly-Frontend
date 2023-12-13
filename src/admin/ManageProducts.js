@@ -10,7 +10,6 @@ const ManageProducts = () => {
   const preload = () => {
     getAllProducts().then((data) => {
       if (data.error) {
-        console.log(data.error);
       } else {
         setProducts(data);
       }
@@ -33,36 +32,19 @@ const ManageProducts = () => {
 
   return (
     <Base >
-       {/* <!-- Start Banner Area --> */}
-    <section className="banner-area organic-breadcrumb">
-      <div className="container">
-        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-          <div className="col-first">
-            <h1>Manage Categories</h1>
-            <nav className="d-flex align-items-center">
-              <a href="index.html">
-                Home<span className="lnr lnr-arrow-right"></span>
-              </a>
-              <a href="single-product.html">Dashboard<span className="lnr lnr-arrow-right"></span> </a>
-              <a href="single-product.html">Manage Products </a>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* <!-- End Banner Area --> */}
+      <div className="container" style={{marginTop:"7%"}}>
       <Link className='btn btn-success' to={`/admin/dashboard`}>
         <span className=''>Admin Home</span>
       </Link>
 
-      <div className='row bg-light rounded w-100 text-dark justify-content-center '>
+      <div className='row  rounded w-100  justify-content-center '>
         <div className='col-8'>
         
 <hr/>
-<table class="table table-secondary m-3  ">
+<table className="table table-secondary m-3  ">
                     <thead>
                       <tr>
-                        <th scope="col">Category name</th>
+                        <th scope="col">Product name</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                       </tr>
@@ -92,6 +74,7 @@ const ManageProducts = () => {
            </tbody>
                       </table>
         </div>
+      </div>
       </div>
     </Base>
   );

@@ -1,16 +1,24 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@700&family=Poppins:wght@200;300;400;500&display=swap');.btn,
-.jumbotron,
-.nav :hover {
-  border-radius: 0px;
-} */
-/* body,
+ @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@700&family=Poppins:wght@200;300;400;500&display=swap');
+
+body,
 .bg-dark {
-  /* background: #091d2c  !important; */
-  /* font-family: 'Poppins', sans-serif; */
-  /* background: url("./core/SignBg.png") ;
+  background: #03001C  !important; 
+   font-family: 'Poppins', sans-serif;
   background-size: inherit; 
 } 
 
+
+.text-dark{
+  color: #363062;
+}
+
+.category .active{
+  background-color: #03001C;
+  border: 2px solid #ffffff;
+}
+
+
+/*
 /* .heading{
   font-family: 'Edu SA Beginner', cursive;
   font-size: 1.8rem;
@@ -32,9 +40,9 @@ a{
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,500&display=swap');
 :root {
-  --navy: #162E44;
-  --navy-hover: #304559;
-  --cyan: #01b3a7;
+  --navy: #363062;
+  --navy-hover: #5B8FB9;
+  --cyan: #B6EADA;
 }
 .btn-success{
   background-color: var(--navy);
@@ -47,9 +55,7 @@ a{
   background-color: var(--navy-hover);
 }
 
-body{
-  background-color: #ffffff !important;
-}
+
 a{
   text-decoration: none;
 }
@@ -68,6 +74,14 @@ a{
   margin-right:30px;
 }
 /* Home */
+.carousel-inner>.carousel-item>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  margin:auto;
+  width: 100%; 
+  }
 .tabs-custom {
 	text-align: left;
 }
@@ -146,24 +160,19 @@ figcaption{
 
 
 /* FOOTER */
-.footer-bottom-panel , .footer-bottom-panel a {
-  background-color: #11263A;
-  color: #ffffff;
+.footer-area{
+  background-color: #03001C;
+}
+.footer-hr{
+  display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid #F5E8C7;
+    margin: 1em 0;
+    padding: 0;
+  }
 
-}
-.footer-top-panel {
-  background-color: var(--navy);
-  color: #ffffff;
-  padding-top: 1%;
-}
 
-
-footer .icon{
-  color: var(--cyan);
-}
-footer a{
-  color: #ffffff;
-}
 .btn-cyan{
   background-color: var(--cyan);
   color: var(--navy);
