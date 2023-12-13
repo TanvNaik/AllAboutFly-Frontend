@@ -54,6 +54,8 @@ const Signup = () => {
     return (
       <div className='row align-items-center' style={{minHeight: "100vh"}}>
         <div className='col-md-6 offset-sm-3 text-left pt-4 mt-3'>
+          <h3 className="text-light text-center">Ready for Takeoff? Sign Up and Explore Limitless Skies!<br/><br/>
+</h3>
           <form>
             <div className='form-group'>
               <label className=''>Name:</label>
@@ -127,23 +129,22 @@ const Signup = () => {
   };
 
   const errorMessage = () => {
-    return (
-      <div className='row'>
-        <div className='col-md-6 offset-sm-3 text-left'>
-          
-            {success && (
-           alert(error)
-          )}
-        </div>
-      </div>
+    if (error) {
+      return (
+      <div class="container alert alert-danger" role="alert">
+{error}        </div>
     );
-  };
+  }};
   return (
-    <Base title='' description='Register yourself to start shopping!'>
-            {successMessage()}
+    <Base title='' >
 
-      {errorMessage()}
-      {signUpForm()}
+      <div className="text-white" style={{marginTop:"7%"}}>
+      {successMessage()}
+
+{errorMessage()}
+{signUpForm()}
+      </div>
+            
     </Base>
   );
 };

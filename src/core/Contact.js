@@ -2,6 +2,17 @@ import React from 'react'
 import Base from './Base'
 
 export default function Contact() {
+
+	const sendMail = () => {
+		const recipient = 'naiktanvi30@gmail.com';
+		const subject = 'Hello';
+		const body = 'This is the body of the email.';
+		
+		const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+		window.location.href = mailtoLink;
+
+	}
+	
   return (
     <Base>
 	      {/* <!--================Contact Area =================--> */}
@@ -48,7 +59,7 @@ export default function Contact() {
 							</div>
 						</div>
 						<div className="col-md-12 text-right">
-							<button  value="submit" className="primary-btn">Send Message</button>
+							<button onClick={sendMail} value="submit" className="primary-btn">Send Message</button>
 						</div>
 					</form>
 				</div>

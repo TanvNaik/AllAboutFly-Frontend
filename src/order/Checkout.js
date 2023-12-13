@@ -173,14 +173,14 @@ export default function Checkout() {
                           <tr key={key}>
                             <td>{prod.name} </td>
                             <td>{prod.count}</td>
-                            <td>${prod.price * prod.count}</td>
+                            <td>&#x20B9;{prod.price * prod.count}</td>
                           </tr>
                         );
                       })}
                       <tr className="text-center">
                         <td>Total </td>
                         <td></td>
-                        <td>${amount}</td>
+                        <td>&#x20B9;{amount}</td>
                       </tr>
                     </tbody>
                   </table>

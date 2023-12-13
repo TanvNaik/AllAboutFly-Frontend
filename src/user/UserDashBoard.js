@@ -162,7 +162,7 @@ const UserDashBoard = () => {
             <Link to={"../../user-orders/" + user._id} className='nav-link ' style={{color: "#6C70FE"}}>
               Orders
             </Link>
-            <Link to={"../../write-feedback"} className='nav-link ' style={{color: "#6C70FE"}}>
+            <Link to={"../../contact-us"} className='nav-link ' style={{color: "#6C70FE"}}>
               Contact Us
             </Link>
           </li>

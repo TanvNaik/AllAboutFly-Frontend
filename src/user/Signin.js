@@ -24,10 +24,14 @@ const Signin = () => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
 
+    if(email === "" || password === ""){
+      return setValues({...values, error:"Please fill all the fields"})
+    }
+
     signin({ email, password })
       .then((data) => {
         if (data.error) {
-          setValues({ ...values, error: data.error.msg, loading: false });
+          setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
             setValues({
@@ -37,7 +41,9 @@ const Signin = () => {
           });
         }
       })
-      .catch(console.log("Signin request failed"));
+      .catch(() => {
+        setValues({...values, error:"Invalid credentials"})
+        console.log("Signin request failed")});
   };
 
   const performRedirect = () => {
@@ -55,30 +61,25 @@ const Signin = () => {
   const loadingMessage = () => {
     return (
       loading && (
-        <div className='alert alert-info'>
+        <div className=' container alert alert-info'>
           <h2>Loading...</h2>
         </div>
       )
     );
   };
   const errorMessage = () => {
-    return (
-      <div className='row'>
-        <div className='col-md-6 offset-sm-3 text-left'>
-          <div
-            className='alert alert-danger'
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
-        </div>
-      </div>
+    if (error) {
+      return (
+      <div class="container alert alert-danger" role="alert">
+{error}        </div>
     );
-  };
+  }};
   const signInForm = () => {
     return (
-      <div className='row align-items-center'  style={{minHeight: "70vh"}}>
-        <div className='col-md-6 offset-sm-3 text-left'>
+      <div className='row align-items-center '  style={{minHeight: "70vh"}}>
+        <div className='col-md-6 offset-sm-3 text-left text-light'>
+        <h3 className="text-light text-center">Connect & Explore: Sign In for Your Drone Journey!<br/><br/>
+</h3>
           <form>
             <div className='form-group'>
               <label className=''>Email:</label>
@@ -110,10 +111,13 @@ const Signin = () => {
   };
   return (
     <Base title='' description='Sign-in to an existing Account'>
+      <div style={{marginTop:"7%"}}>
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
+      </div>
+      
       
     </Base>
   );
