@@ -6,8 +6,6 @@ body,
    font-family: 'Poppins', sans-serif;
   background-size: inherit; 
 } 
-
-
 .text-dark{
   color: #363062;
 }
@@ -18,27 +16,7 @@ body,
 }
 
 
-/*
-/* .heading{
-  font-family: 'Edu SA Beginner', cursive;
-  font-size: 1.8rem;
-  background: -webkit-linear-gradient(#37BA30, #076BDF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-footer{
-  font-size: 0.8rem;
-}
-a{
-  color: #6C757D;
-} */
 
-/* ADMIN DASHBOARD
-.bg-admin{
-  background-color: #6C757D;
-} */
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,500&display=swap');
 :root {
   --navy: #363062;
   --navy-hover: #5B8FB9;
@@ -55,6 +33,15 @@ a{
   background-color: var(--navy-hover);
 }
 
+.single-product img{
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio */
+  transition: transform 0.3s ease-in-out; /* Transition effect */
+
+}
+.single-product img:hover{
+  transform: scale(1.2); /* Zoom effect on hover */
+}
 
 a{
   text-decoration: none;
@@ -91,21 +78,6 @@ figcaption{
 .card{
   border: none;
 }
-.banner-txt{
-  font-family: 'Mulish', sans-serif;
-}
-.slogan{
-  font-family: 'Mulish', sans-serif;
-  font-style: italic;
-}
-/* 
-.tabs-custom .nav-tabs {
-	font-size: 0;
-	line-height: 0;
-	word-spacing: 0;
-	border: 0;
-	justify-content: center;
-} */
 
 .tabs-custom .nav-tabs:before, .tabs-custom .nav-tabs:after {
 	display: none;
@@ -114,12 +86,8 @@ figcaption{
 .tabs-custom .nav-item {
 	float: none;
   padding: 0.8%;
-  /* background-color: var(--navy-hover); */
-  
-
 }
 .tabs-custom .nav-item :hover{
-  /* background-color: var(--navy); */
   border-bottom: 2px solid var(--cyan);
 }
 
@@ -183,4 +151,17 @@ figcaption{
 }
 .text-cyan{
   color: var(--cyan);
+}
+
+@media screen and (max-width: 600px){
+  .user-order, .user-flex, .admin-flex{
+     flex-direction: column;
+     align-items: center;
+
+  }
+  .user-order div ,.user-flex div, .admin-flex div{
+    width: 100% !important; 
+    max-width: 100% !important;
+    margin: 1%;
+  }
 }

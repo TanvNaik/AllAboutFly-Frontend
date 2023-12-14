@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { cartUpdate, getUserCart } from "./helper/userapicalls";
 import { Link,  useNavigate } from "react-router-dom";
 import { loadCart, removeItemFromCart } from "../core/helper/cartHelper";
 
 const Cart = () => {
-  const { user } = isAuthenticated();
   const [products, setProducts] = useState([]);
 const navigate = useNavigate();
   const [price, setPrice] = useState(0);
@@ -46,7 +44,7 @@ const navigate = useNavigate();
     
         <div className="container">
           <div className="cart_inner">
-            <div className="table-responsive">
+            <div className="table-responsive-sm">
       
               {products && products.length == 0 && (
                 <div className=" d-flex h-75 align-items-center " style={{minHeight: "50vh"}}>

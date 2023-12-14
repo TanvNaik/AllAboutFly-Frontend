@@ -22,11 +22,11 @@ export default function UserOrders() {
     },[])
   return (
     <Base>
-    <div className="row d-flex justify-content-center" style={{marginTop: "7%"}}>
+    <div className="d-flex flex-wrap justify-content-center user-order " style={{marginTop: "7%"}}>
 
 {orders.length > 0 && orders.map((order,key) => {
   return(
-    <div key={key} className=' col-3 card mb-4 w-25 m-1' >
+    <div key={key} className=' w-25 card mb-4 m-1' style={{maxWidth:"25%"}}  >
             
     <ul className='list-group' >
     <li className='list-group-item'>
@@ -109,6 +109,93 @@ export default function UserOrders() {
   )
   
 })}
+{orders.length > 0 && orders.map((order,key) => {
+  return(
+    <div key={key} className=' w-25 card mb-4 m-1' style={{maxWidth:"25%"}}  >
+            
+    <ul className='list-group' >
+    <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Order Placed at:
+        </span>
+        &nbsp;
+        {order.createdAt.split("T")[0]}
+      </li>
+      <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Address:
+        </span>
+        &nbsp;
+        {order.address}
+      </li>
+      <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Contact No:
+        </span>
+        &nbsp;
+        {order.contact_no}
+      </li>
+      <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Amount
+        </span>
+        &nbsp;
+         {order.amount}/- 
+      </li>
+      <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Status:
+        </span>
+        &nbsp;
+        {order.status === 'Delivered'  && (<span className="text-success">Delivered</span>)}
+        {order.status !== 'Delivered'  && (<span className="text-info">{order.status}</span>)}
+        
+      </li>
+      <li className='list-group-item'>
+        <span
+          className='badge bg-warning text-dark
+           mr-2 '
+        >
+          Status Updated At:
+        </span>
+        &nbsp;
+        {order.updatedAt.split("T")[0]}
+      </li>
+      
+      
+        
+      
+      <li className='list-group-item'>
+      <Link to={"/order/" + order._id}>
+      <button  className="btn btn-success " style={{width: "100%", borderRadius:"5px"}}>
+         View Order Details
+        </button>
+        </Link>
+      </li>
+      
+    </ul>
+  </div>
+    
+  )
+  
+})}
+
+  
 
 
 </div>

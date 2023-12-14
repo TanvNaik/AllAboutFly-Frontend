@@ -59,7 +59,7 @@ export default function ViewOrder() {
   return (
     <Base>
       <div
-        className="row d-flex justify-content-center"
+        className="d-flex justify-content-center user-order"
         style={{ marginTop: "7%" }}
       >
         {errorMessage()}

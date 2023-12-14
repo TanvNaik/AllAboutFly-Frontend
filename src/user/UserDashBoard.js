@@ -150,11 +150,7 @@ const UserDashBoard = () => {
      return <div className='card w-100 h-100 text-start bg-light'>
         <h4 className='card-header ' style={{fontSize: "1.2rem"}}>  Dashboard </h4>
         <ul className='list-group'>
-          <li className='list-group-item'>
-          {/* <Link to={"../../update-profile"} className='nav-link ' style={{color: "#6C70FE"}}>
-              Update Profile
-            </Link> */}
-            
+          <li className='list-group-item'>        
             
             <Link to={"../../cart"} className='nav-link ' style={{color: "#6C70FE"}}>
               Cart
@@ -201,25 +197,13 @@ const UserDashBoard = () => {
         </ul>
       </div>
   }
-  const userProfilePic = () => {
-      return(
-        <div className='card  w-100 h-100  justify-content-center align-items-center bg-dark' >
-                
-                <img width={"50%"} 
-                src="../images/undraw_pic_profile_re_7g2h.svg"
-                />
-              
-        </div>
-      )
-  }
+  
   return (
     <Base title="User Dash Board">
-      <div className='row justify-content-center ' style={{marginTop: "6%"}}>
-        <div className='col-3  d-flex justify-content-center align-items-center'>{leftSide()}</div>
-        <div className='col-5  '>{rightSide()}</div>
-        {/* <div className="col-3 d-flex justify-content-center align-items-center">{userProfilePic()}</div> */}
+      <div className=' user-flex d-flex justify-content-center ' style={{marginTop: "6%"}}>
+        <div className='w-25 align-items-center'>{leftSide()}</div>
+        <div className='w-50'>{rightSide()}</div>
       </div>
-      {/* {dashBoard()} */}
     </Base>
   );
 };

@@ -58,11 +58,9 @@ const Base = ({ children }) => {
                   <a href="#">
                     <i className="fa fa-twitter"></i>
                   </a>
+                 
                   <a href="#">
-                    <i className="fa fa-dribbble"></i>
-                  </a>
-                  <a href="#">
-                    <i className="fa fa-behance"></i>
+                    <i className="fa fa-instagram"></i>
                   </a>
                 </div>
               </div>

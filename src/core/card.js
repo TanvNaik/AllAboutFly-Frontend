@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ImageHelper from "./helper/ImageHelper";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { addItemToCart, removeItemfromCart } from "../user/helper/userapicalls";
 
 import { isAuthenticated } from "../auth/helper";
-import { addItemToCart } from "./helper/cartHelper";
-import { removeItemfromCart } from "../user/helper/userapicalls";
-
+import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
 const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
 
@@ -35,7 +31,7 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
   };
 
   const removefromCart = () => {
-    removeItemfromCart(user._id,product._id)
+    removeItemFromCart(user._id,product._id)
     return navigate("/cart");
 
   }
@@ -58,6 +54,7 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
 						<div className="single-product bg-light mt-2" style={{borderRadius: "10px"}}>
            {product.photo && (
                         <img
+                        className="product-image"
                           width={"300px"}
                           height={"300px"}
                           src={`http://localhost:8000/image/${product.photo}`}

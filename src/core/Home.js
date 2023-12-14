@@ -4,12 +4,10 @@ import Base from "./Base";
 import Card from "./card";
 import { getAllProducts } from "./helper/coreapicalls";
 import { getAllCategories } from "../admin/helper/adminapicall";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const changeSection = (name) => (event) => {
@@ -35,14 +33,14 @@ const Home = () => {
   const preload = () => {
     getAllCategories().then((data) => {
       if (data.error) {
-        return setError(data.error);
+        return console.log(data.error);
       } else {
         setCategories(data);
       }
     });
     getAllProducts().then((data) => {
       if (data.error) {
-        return setError(data.error);
+        return console.log(data.error);
       } else {
         setAllProducts(data);
         setProducts(data);
@@ -58,8 +56,8 @@ const Home = () => {
       
       {/* <!-- Start header Area --> */}
       <section className="header-area ">
-      <div className="container  d-flex w-100   justify-content-between align-items-center   text-light mt-5 pt-5" style={{height:"75vh"}}>
-        <div
+      <div className="container  d-flex w-100   justify-content-between align-items-center   text-light  mt-5   pt-5" >
+        {/* <div
           className="my-auto max-w-3xl w-full blub relative ml-2 w-50 "
           style={{ marginLeft: "15%" }}
         >
@@ -75,40 +73,40 @@ const Home = () => {
             </div>
             
           </div>
-        </div>
+        </div> */}
         <div
           id="carouselExampleSlidesOnly"
-          className="carousel slide w-50 align-items-center  pt-5"
+          className="carousel slide  align-items-center p-0 "
           data-bs-ride="carousel"
-          style={{ maxWidth: "70%", widt: "40%", marginRight:"5%" }}
+         
         >
-          <div className="carousel-inner">
-          <div className="carousel-inner text-center " style={{height:"70vh"}}>
+          <div className="carousel-inner ">
+          <div className="carousel-inner text-center ">
               <div className="carousel-item active text-center align-items-center ">
                 <img
-                  className="d-block   "
-                  src="../site-images/img1.jpg"
+                  className="d-block  "
+                  src="../images/1000.webp"
                   alt="First slide"
                 />
               </div>
               <div className="carousel-item">
                 <img
                   className="d-block "
-                  src="../site-images/img2.jpg"
+                  src="../images/dis.webp"
                   alt="Second slide"
                 />
               </div>
               <div className="carousel-item">
                 <img
                   className="d-block "
-                  src="../site-images/img3.jpg"
+                  src="../images/DJIMavic3Pro.webp"
                   alt="Third slide"
                 />
               </div>
               <div className="carousel-item">
                 <img
                   className="d-block "
-                  src="../site-images/img4.jpg"
+                  src="../images/DjiMavicMininew.webp"
                   alt="Third slide"
                 />
               </div>
@@ -122,7 +120,33 @@ const Home = () => {
       </section>
       {/* <!-- End header Area --> */}
 
-
+      <div className="container  d-flex  flex-wrap w-100   justify-content-between align-items-center   text-light  mt-5   pt-5" >
+      <div
+          className="  w-50 "
+        >
+          <img
+                  className="d-block "
+                  src="../images/ezgif.com-video-to-gif.gif"
+                  alt="Second slide"
+                />
+        </div>
+        <div
+          className="  w-30 "
+          
+        >
+            <div className="">
+              <h2 className="text-start font-semibold md:text-left text-white " >
+              Elevate Your Perspective,  <br />
+              Elevate Your World
+              </h2>
+              <p className="introduction__copy mt-2 mr-auto max-w-xs xl:max-w-md md:text-left ml-0 text-lead" style={{color:"#818FB4"}}>
+              Discover Limitless Views with Every Glide.
+              </p>
+            </div>
+            
+          </div>
+        
+        </div>
  
 
       {/* <!-- start product Area --> */}
